@@ -11,6 +11,6 @@ namespace GloboTicket.TicketManagement.Domain.Entities.Common
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? LastUpdatedBy { get; set; } = string.Empty;
-        public DateTime? LastUpdatedDate { get; private set; }
+        public DateTime? LastUpdatedDate { get; set; }
     }
 }
