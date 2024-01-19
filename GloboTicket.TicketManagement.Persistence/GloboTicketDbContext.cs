@@ -22,9 +22,44 @@ namespace GloboTicket.TicketManagement.Persistence
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(GloboTicketDbContext).Assembly);
 
+            // seed data, added through migrations
+            var concertGuid = Guid.NewGuid();
+            var musicalGuid = Guid.NewGuid();
+            var playGuid = Guid.NewGuid();
+            var conferenceGuid = Guid.NewGuid();
+
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = concertGuid,
+                Name = "Concerts"
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = musicalGuid,
+                Name = "Musical"
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = playGuid,
+                Name = "Plays"
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category
+            {
+                Id = conferenceGuid,
+                Name = "Conferences"
+            });
+
 
             base.OnModelCreating(modelBuilder);
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDb;Database=GloboTicket;Trusted_Connection=True;");
+        //}
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken()) 
         {

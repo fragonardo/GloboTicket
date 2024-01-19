@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GlobolTicket.TicketManagement.Infrastructure.Mail
+namespace GloboTicket.TicketManagement.Infrastructure.Mail
 {
     public class EmailService : IEmailService
     {

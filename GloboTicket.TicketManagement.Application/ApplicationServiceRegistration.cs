@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application
 {
-    public class ApplicationServiceRegistration
+    public static class ApplicationServiceRegistration
     {
-        public static IServiceCollection AddApplicationServices(IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));

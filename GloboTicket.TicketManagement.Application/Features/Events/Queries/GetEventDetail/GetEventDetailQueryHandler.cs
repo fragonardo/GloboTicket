@@ -7,17 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using E = GloboTicket.TicketManagement.Domain.Entities;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
     public class GetEventDetailQueryHandler : IRequestHandler<GetEventDetailQuery, EventDetailVm>
     {
         private readonly IAsyncRepository<Event> _eventRepository;
-        private readonly IAsyncRepository<Category> _categoryRepository;
+        private readonly IAsyncRepository<E.Category> _categoryRepository;
         private readonly IMapper _mapper;
 
         public GetEventDetailQueryHandler(IAsyncRepository<Event> eventRepository,
-            IAsyncRepository<Category> categoryRepository,
+            IAsyncRepository<E.Category> categoryRepository,
             IMapper mapper)
         {
             _eventRepository = eventRepository;

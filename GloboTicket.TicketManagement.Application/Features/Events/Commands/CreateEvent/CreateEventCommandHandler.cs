@@ -2,14 +2,8 @@
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Application.Models.Mail;
-using GloboTicket.TicketManagement.Domain.Entities;
+using E = GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
 {
@@ -20,7 +14,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
         private readonly IEmailService _emailService;
 
         public CreateEventCommandHandler(IEventRepository eventRepository,
-            IAsyncRepository<Category> categoryRepository,
+            IAsyncRepository<E.Category> categoryRepository,
             IEmailService emailService,
             IMapper mapper)
         {
@@ -31,7 +25,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
-            var @event = _mapper.Map<Event>(request);
+            var @event = _mapper.Map<E.Event>(request);
 
             var validator = new CreateEventCommandValidator(_eventRepository);
             var validationResult = await validator.ValidateAsync(request);

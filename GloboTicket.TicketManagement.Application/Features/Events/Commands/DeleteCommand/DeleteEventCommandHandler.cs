@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Domain.Entities;
+using E = GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,11 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Dele
 {
     public class DeleteEventCommandHandler : IRequestHandler<DeleteEventCommand>
     {
-        private readonly IAsyncRepository<Event> _eventRepository;        
+        private readonly IAsyncRepository<E.Event> _eventRepository;        
         private readonly IMapper _mapper;
 
-        public DeleteEventCommandHandler(IAsyncRepository<Event> eventRepository,
-            IAsyncRepository<Category> categoryRepository,
+        public DeleteEventCommandHandler(IAsyncRepository<E.Event> eventRepository,
+            IAsyncRepository<E.Category> categoryRepository,
             IMapper mapper)
         {
             _eventRepository = eventRepository;

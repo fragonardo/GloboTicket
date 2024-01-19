@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Domain.Entities;
+using E = GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,11 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
 {
     public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand>
     {
-        private readonly IAsyncRepository<Event> _eventRepository;        
+        private readonly IAsyncRepository<E.Event> _eventRepository;        
         private readonly IMapper _mapper;
 
-        public UpdateEventCommandHandler(IAsyncRepository<Event> eventRepository,
-            IAsyncRepository<Category> categoryRepository,
+        public UpdateEventCommandHandler(IAsyncRepository<E.Event> eventRepository,
+            IAsyncRepository<E.Category> categoryRepository,
             IMapper mapper)
         {
             _eventRepository = eventRepository;
@@ -26,7 +26,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
         public async Task Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
             var eventToUpdate = await _eventRepository.GetByIdAsync(request.EventId);
-            _mapper.Map(request, eventToUpdate, typeof(UpdateEventCommand), typeof(Event));
+            _mapper.Map(request, eventToUpdate, typeof(UpdateEventCommand), typeof(E.Event));
             await _eventRepository.UpdateAsync(eventToUpdate);
             
         }
